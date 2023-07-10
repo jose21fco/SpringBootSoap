@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.soap.client.SoapClient;
 import com.soap.wsdl.AddResponse;
+import com.soap.wsdl.DivideResponse;
+import com.soap.wsdl.MultiplyResponse;
 import com.soap.wsdl.SubtractResponse;
 
 @RestController
@@ -37,6 +39,28 @@ public class SoapController {
         SubtractResponse subtractResponse = soapClient.getSubtractResponse(numberA, numberB);
 
         response.put("resultado", subtractResponse.getSubtractResult());
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/multiplicar")
+    public ResponseEntity<?> multiply(@RequestParam int numberA, @RequestParam int numberB) {
+
+        Map<String, Integer> response = new HashMap<>();
+        MultiplyResponse multiplyResponse = soapClient.getMultiplyResponse(numberA, numberB);
+
+        response.put("resultado", multiplyResponse.getMultiplyResult());
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/dividir")
+    public ResponseEntity<?> divide(@RequestParam int numberA, @RequestParam int numberB) {
+
+        Map<String, Integer> response = new HashMap<>();
+        DivideResponse divideResponse = soapClient.getDivideResponse(numberA, numberB);
+
+        response.put("resultado", divideResponse.getDivideResult());
 
         return ResponseEntity.ok().body(response);
     }

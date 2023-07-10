@@ -79,7 +79,7 @@ public class SoapClient extends WebServiceGatewaySupport {
         divideRequest.setIntA(numberA);
         divideRequest.setIntB(numberB);
 
-        SoapActionCallback soapActionCallback = new SoapActionCallback("http://tempuri.org/Subtract");
+        SoapActionCallback soapActionCallback = new SoapActionCallback("http://tempuri.org/Divide");
 
         DivideResponse divideResponseResponse = (DivideResponse) getWebServiceTemplate().marshalSendAndReceive("http://www.dneonline.com/calculator.asmx", divideRequest, soapActionCallback);
 
